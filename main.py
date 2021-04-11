@@ -36,18 +36,33 @@ def generate_password(length, uc, numbers, specialc):
 
 
 sg.theme('Reddit')
-layout = [  [sg.Button('generate password',size=(10,2))], 
-            [sg.Output(size=(40,1), key='-OUTPUT-')]   ]
 
+layout = [  [sg.Text("Password size"), sg.InputText('', size=(10, 1), key='input_size')],
+            [sg.Checkbox("Uppercase", key="uc")], 
+            [sg.Checkbox("Digit", key="digit")],
+            [sg.Checkbox("Special character", key="char")],
+            [sg.Output(size=(40,10), key='-OUTPUT-')],
+            [sg.Button('generate password',size=(10,2))]
+         ]
 
-window = sg.Window("password_gen", layout, size=(300,300))
+window = sg.Window("password_gen", layout, size=(300,350))
+
 while True:
     event, values = window.read()
     # End program if user closes window or
-    # presses the OK button
     if event == sg.WIN_CLOSED:
         break
     elif event == 'generate password':
-        window['-OUTPUT-'].update(generate_password(25,1,1,1))
-
+        uc=0;digit=0;char=0
+        if values['input_size'].isdigit():
+            size = int(values['input_size'])
+        else:
+            size = 0
+        if values["uc"] == True:
+            uc = 1
+        if values["digit"] == True:
+            digit = 1
+        if values["char"] == True:
+            char = 1
+        window['-OUTPUT-'].update(generate_password(size,uc,digit,char))
 window.close()
