@@ -6,8 +6,8 @@ The executable does not require any library or installation. It is totally indep
 
 However, in order to compile the code, the following libraries are required: 
 - pyperclip (include in Python)
-  import pyperclip
+ <br>import pyperclip
   
 - PySimpleGUI
-  python -m pip install pysimplegui
-  import PySimpleGUI
+<br>python -m pip install pysimplegui
+<br>import PySimpleGUI
